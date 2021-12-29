@@ -4,18 +4,18 @@
 #include<cassert>
 
 template<typename T>
-class Cola
+class ColaD
 {
 public:
-    Cola();
-    Cola(Cola<T>& C);
-    Cola<T>& operator =(const Cola<T>& C);
+    ColaD();
+    ColaD(ColaD<T>& C);
+    ColaD<T>& operator =(const ColaD<T>& C);
     bool vacia() const;
     T& frente() const;
     T& final() const;
     void push(const T& x);
     void pop();
-    ~Cola();
+    ~ColaD();
 
 private:
     struct nodo
@@ -26,11 +26,11 @@ private:
     };
     nodo* inicio;
     nodo* fin;
-    void Copiar(const Cola<T>& C);
+    void Copiar(const ColaD<T>& C);
 };
 
 template<typename T>
-void Cola<T>::Copiar(const Cola<T>& C)
+void ColaD<T>::Copiar(const ColaD<T>& C)
 {
     if(C.inicio != nullptr)
     {
@@ -44,20 +44,20 @@ void Cola<T>::Copiar(const Cola<T>& C)
 }
 
 template<typename T>
-Cola<T>::Cola() : inicio(nullptr),fin(nullptr){}
+ColaD<T>::ColaD() : inicio(nullptr),fin(nullptr){}
 
 template<typename T>
-Cola<T>::Cola(Cola<T>& C)
+ColaD<T>::ColaD(ColaD<T>& C)
 {
     Copiar(C);
 }
 
 template<typename T>
-Cola<T>& Cola<T>::operator=(const Cola& C)
+ColaD<T>& ColaD<T>::operator=(const ColaD& C)
 {
     if (this != &C)
     {
-        this->~Cola();
+        this->~ColaD();
         Copiar (C);
     }
 
@@ -66,27 +66,27 @@ Cola<T>& Cola<T>::operator=(const Cola& C)
 }
 
 template<typename T>
-bool Cola<T>::vacia() const
+bool ColaD<T>::vacia() const
 {
     return (inicio == nullptr);
 }
 
 template<typename T>
-T& Cola<T>::frente() const
+T& ColaD<T>::frente() const
 {
     assert(!vacia());
     return inicio->elemento;
 }
 
 template<typename T>
-T& Cola<T>::final() const
+T& ColaD<T>::final() const
 {
     assert(!vacia());
     return fin->elemento;
 }
 
 template<typename T>
-void Cola<T>::push(const T& x)
+void ColaD<T>::push(const T& x)
 {
     nodo* p = new nodo(x);
     if(inicio == nullptr)
@@ -103,7 +103,7 @@ void Cola<T>::push(const T& x)
 }
 
 template<typename T>
-void Cola<T>::pop()
+void ColaD<T>::pop()
 {
     assert(!vacia());
     nodo* p = inicio;
@@ -118,7 +118,7 @@ void Cola<T>::pop()
 }
 
 template<typename T>
-Cola<T>::~Cola()
+ColaD<T>::~ColaD()
 {
     nodo* p;
     while (inicio)
